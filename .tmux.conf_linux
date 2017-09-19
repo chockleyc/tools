@@ -1,0 +1,13 @@
+set -g mouse on
+
+set -g default-terminal "screen-256color" 
+
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+
+bind b split-window
+bind B split-window -c "#{pane_current_path}"
+bind v split-window -h
+bind V split-window -h -c "#{pane_current_path}"
+bind c new-window
+bind C new-window -c "#{pane_current_path}"
