@@ -5,9 +5,42 @@ set -g default-terminal "screen-256color"
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
 
-bind b split-window
-bind B split-window -c "#{pane_current_path}"
-bind v split-window -h
-bind V split-window -h -c "#{pane_current_path}"
-bind c new-window
-bind C new-window -c "#{pane_current_path}"
+
+# -- Display -----------------------------------------------------------------
+setw -g automatic-rename on # automatically rename window to current program
+set -g renumber-windows on # automatically renumber windows when one is closed
+set -g set-titles on # set terminal title
+
+# -- Navigation -------------------------------------------------------------
+
+# create session
+bind C-c new-session
+
+# pane navigation
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
+bind > swap-pane -D # swap current pane with the next one
+bind < swap-pane -U # swap current pane with the previous one
+
+# pane resizing
+bind -r H resize-pane -L 2
+bind -r J resize-pane -D 2
+bind -r K resize-pane -U 2
+bind -r L resize-pane -R 2
+
+# window navigation
+unbind n
+unbind p
+bind -r C-h previous-window
+bind -r C-l next-window
+bind Tab last-window
+
+
+bind n split-window
+bind N split-window -c "#{pane_current_path}"
+bind m split-window -h
+bind M split-window -h -c "#{pane_current_path}"
+bind b new-window
+bind B new-window -c "#{pane_current_path}"
